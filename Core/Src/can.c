@@ -98,7 +98,7 @@ void process_CAN500_msgs(BMS_CAN_Data *bmsData, IMD_CAN_Data *imdData) {
 		// IMD ID
 		case 0x18FF01F4:
 			//419365364
-			imdData->insulationResistance = concatenate(currentMessage.data[1], currentMessage.data[0]);
+			imdData->insulationResistance = concatenate(currentMessage.data[1], currentMessage.data[0]); //THIS IS THE CORRECT ORDER
 			imdData->iso_status = currentMessage.data[2];
 			imdData->imd_counter = currentMessage.data[3];
 			imdData->imd_warnings = concatenate(currentMessage.data[5], currentMessage.data[4]);

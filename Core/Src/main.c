@@ -204,15 +204,12 @@ int main(void)
 
   /* USER CODE BEGIN WHILE */
   while (1)
-  {		//CAN testing
-
-	  	//debug0 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0);
-
+  {
 	  	HAL_Delay(500);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
 		HAL_Delay(500);
 
-		process_CAN250_msgs(&vfdData);
+		//process_CAN250_msgs(&vfdData);
 		process_CAN500_msgs(&bmsData, &imdData);
 
 		debug1 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO1);
