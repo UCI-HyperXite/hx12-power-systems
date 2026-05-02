@@ -135,25 +135,6 @@ int main(void)
   HAL_NVIC_EnableIRQ(FDCAN2_IT1_IRQn);
 
 
-  /*
-   FDCAN_FilterTypeDef sFilter;
-
-   // ----- FDCAN2 (500 kbps) -----
-   sFilter.IdType = FDCAN_EXTENDED_ID;
-   sFilter.FilterIndex = 0;
-   sFilter.FilterType = FDCAN_FILTER_MASK;
-   sFilter.FilterConfig = FDCAN_FILTER_TO_RXFIFO1;
-   sFilter.FilterID1 = 0x00000000;   // accept all IDs temporarily - replace with kelly VFD ids once verified
-   sFilter.FilterID2 = 0x00000000;   // mask = 0 → accept everything
-   HAL_FDCAN_ConfigFilter(&hfdcan2, &sFilter);
-
-   // ----- FDCAN1 (250 kbps) -----
-   sFilter.FilterIndex = 1;
-   sFilter.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-   HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilter);
-*/
-
-
   //CAN2 filter (250)
   FDCAN_FilterTypeDef filter2;
   filter2.IdType = FDCAN_EXTENDED_ID;

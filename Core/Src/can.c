@@ -132,9 +132,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 		// While loop to pop messages from the queue (useful in event of multiple msg arriving at once
 		while (HAL_FDCAN_GetRxFifoFillLevel(hfdcan, FDCAN_RX_FIFO0) > 0) {
 
-			if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &RxHeader250, RxData250) != HAL_OK) {
-				Error_Handler();
-			}
+			HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &RxHeader250, RxData250);
 
 		  	int next = (head250 + 1) % CAN_QUEUE_SIZE;
 
@@ -157,9 +155,7 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo1ITs)
 		// While loop to pop messages from the queue (useful in event of multiple msg arriving at once
 		while (HAL_FDCAN_GetRxFifoFillLevel(hfdcan, FDCAN_RX_FIFO1) > 0) {
 
-			if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO1, &RxHeader500, RxData500) != HAL_OK) {
-				Error_Handler();
-			}
+			HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO1, &RxHeader500, RxData500);
 
 		  	int next = (head500 + 1) % CAN_QUEUE_SIZE;
 
