@@ -210,7 +210,7 @@ int main(void)
 		HAL_Delay(500);
 
 		//process_CAN250_msgs(&vfdData);
-		process_CAN500_msgs(&bmsData, &imdData);
+		//process_CAN500_msgs(&bmsData, &imdData);
 
 		debug1 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO1);
 		debug2 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0);

@@ -39,12 +39,18 @@ typedef struct{
 	// in V
 	double lowestCellVoltage;
 	// in V
-	double avgCellVoltage;
-	// in V
 	double highestCellVoltage;
 	double packSOC;
+	double highestTemp; //signed, [1C]
 	uint8_t bmsTestCounter;
+
+	//message id 2
+	uint8_t relayStatus; //each bit interpreted
+	double packVoltage; //2 bytes, [0.1V]
+	double lowestTemp; //signed [1C]
 }BMS_CAN_Data;
+
+extern BMS_CAN_Data bmsData;
 
 typedef struct{
 	double insulationResistance;
@@ -53,6 +59,8 @@ typedef struct{
 	double imd_warnings;
 	double deviceActivity;
 }IMD_CAN_Data;
+
+extern IMD_CAN_Data imdData;
 
 extern CAN_Message canQ250[CAN_QUEUE_SIZE]; //declaring array of can messages
 extern volatile int head250;
