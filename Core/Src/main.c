@@ -25,7 +25,6 @@
 
 #include "can.h"
 #include "throttleDriver.h"
-#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -189,11 +188,6 @@ int main(void)
 
   //=============================================================================
 
-  //============================== ENCODER INITIALIZATION =======================
-  HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
-  //=============================================================================
-
-  //PID throttlePID;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -205,18 +199,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  	HAL_Delay(500);
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
-		HAL_Delay(500);
-
 		//process_CAN250_msgs(&vfdData);
-		//process_CAN500_msgs(&bmsData, &imdData);
+		process_CAN500_msgs(&bmsData, &imdData);
 
 		debug1 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO1);
 		debug2 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0);
-
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

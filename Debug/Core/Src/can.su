@@ -1,7 +1,6 @@
-../Core/Src/can.c:32:8:concatenate	16	static
-../Core/Src/can.c:36:8:rpm_to_ms	16	static
-../Core/Src/can.c:46:5:isDuplicate	24	static
-../Core/Src/can.c:56:6:process_CAN250_msgs	32	static
-../Core/Src/can.c:91:6:process_CAN500_msgs	32	static
-../Core/Src/can.c:132:6:HAL_FDCAN_RxFifo0Callback	24	static
-../Core/Src/can.c:156:6:HAL_FDCAN_RxFifo1Callback	24	static
+../Core/Src/can.c:22:8:concatenate	16	static
+../Core/Src/can.c:26:8:rpm_to_ms	16	static
+../Core/Src/can.c:30:6:process_CAN250_msgs	32	static
+../Core/Src/can.c:58:6:process_CAN500_msgs	32	static
+../Core/Src/can.c:96:6:HAL_FDCAN_RxFifo0Callback	24	static
+../Core/Src/can.c:119:6:HAL_FDCAN_RxFifo1Callback	24	static

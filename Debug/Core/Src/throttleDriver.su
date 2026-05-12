@@ -1,3 +1,3 @@
 ../Core/Src/throttleDriver.c:4:6:throttleTest	16	static
-../Core/Src/throttleDriver.c:30:6:accelerate	16	static
+../Core/Src/throttleDriver.c:30:6:accelerate	24	static
 ../Core/Src/throttleDriver.c:39:6:killThrottle	8	static

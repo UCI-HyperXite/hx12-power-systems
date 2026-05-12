@@ -70,21 +70,12 @@ extern CAN_Message canQ500[CAN_QUEUE_SIZE]; //declaring array of can messages
 extern volatile int head500;
 extern volatile int tail500;
 
-// debugging variables
-// delete later
-extern volatile int x;
-extern volatile int y;
-extern volatile int z;
-extern volatile int a;
-
 
 double concatenate(uint8_t x, uint8_t y);
 
 double rpm_to_ms(double rpm);
 
 void process_CAN250_msgs(VFD_CAN_Data *vfdData);
-
-int isDuplicate(uint32_t id);
 
 void process_CAN500_msgs(BMS_CAN_Data *bmsData, IMD_CAN_Data *imdData);
 
