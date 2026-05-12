@@ -9,6 +9,12 @@
 #define CAN_QUEUE_SIZE 32
 #define UNKNOWN_LOG_SIZE 32
 
+#define IDEAL_LOW_CELL_VOLTAGE 3 //needs to be configured in bms to send a fault at this value
+#define IDEAL_HIGH_CELL_VOLTAGE 4.5 //a cell voltage shouldn't increase above this value
+#define IDEAL_HIGH_TEMP 67 //obtain value on saturday
+#define IDEAL_LOWEST_TEMP 67 //obtain value on saturday
+
+
 typedef struct {
 	uint32_t id;
 	uint8_t data[8];
@@ -45,7 +51,17 @@ typedef struct{
 	uint8_t bmsTestCounter;
 
 	//message id 2
-	uint8_t relayStatus; //each bit interpreted
+	uint8_t relayStatus; //each bit interpreted, 1 == high, 0 == low
+	/*
+	Bit #1 (0x01): Discharge relay enabled
+	Bit #2 (0x02): Charge relay enabled
+	Bit #3 (0x04): Charger safety enabled
+	Bit #4 (0x08): Malfunction indicator active (DTC status)
+	Bit #5 (0x10): Multi-Purpose Input signal status
+	Bit #6 (0x20): Always-on signal status
+	Bit #7 (0x40): Is-Ready signal status
+	Bit #8 (0x80): Is-Charging signal status
+	*/
 	double packVoltage; //2 bytes, [0.1V]
 	double lowestTemp; //signed [1C]
 }BMS_CAN_Data;
@@ -57,6 +73,15 @@ typedef struct{
 	double iso_status;
 	double imd_counter;
 	double imd_warnings;
+	/* 1 == high/true, 0 == low/false
+	Order: 5 4 3 2 1 0
+	Bit 0: true = Device error active
+	Bit 1: true = HV_pos connection failure
+	Bit 2: true = HV_neg connection failure
+	Bit 3: true = Earth connection failure
+	Bit 4: true = Iso alarm (resistance value below threshold error)
+	Bit 5: true = Iso warning (resistance value below threshold warning)
+	 */
 	double deviceActivity;
 }IMD_CAN_Data;
 
