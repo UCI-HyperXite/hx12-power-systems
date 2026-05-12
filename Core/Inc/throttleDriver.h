@@ -14,7 +14,7 @@ extern DAC_HandleTypeDef hdac1; //defined in main
 
 void throttleTest();
 
-void accelerate();
+void accelerate(int input);
 
 void killThrottle();
 
