@@ -124,6 +124,9 @@ int main(void)
   MX_FDCAN2_Init();
   /* USER CODE BEGIN 2 */
 
+  //dac testing:
+  HAL_DAC_Start(&hdac1, DAC_CHANNEL_2);
+
 
   // can line 1
   HAL_NVIC_SetPriority(FDCAN1_IT0_IRQn, 5, 0);
@@ -142,7 +145,6 @@ int main(void)
   filter2.FilterConfig = FDCAN_FILTER_TO_RXFIFO1;
   filter2.FilterID1 = 0;
   filter2.FilterID2 = 0;
-
   HAL_FDCAN_ConfigFilter(&hfdcan2, &filter2);
 
 
@@ -155,7 +157,6 @@ int main(void)
   filter1.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
   filter1.FilterID1 = 0;
   filter1.FilterID2 = 0;
-
   HAL_FDCAN_ConfigFilter(&hfdcan1, &filter1);
 
 
@@ -191,19 +192,20 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Infinite loop */
-
-
-  // Struct Definitions
-
-
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
 		//process_CAN250_msgs(&vfdData);
-		process_CAN500_msgs(&bmsData, &imdData);
+		//process_CAN500_msgs(&bmsData, &imdData);
 
-		debug1 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan2, FDCAN_RX_FIFO1);
-		debug2 = HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0);
+		DAC_SetValue(1000);
+		HAL_Delay(1000);
+		DAC_SetValue(2000);
+		HAL_Delay(1000);
+		DAC_SetValue(4095);
+		HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -336,7 +338,7 @@ static void MX_FDCAN1_Init(void)
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
-  hfdcan1.Init.NominalPrescaler = 10;
+  hfdcan1.Init.NominalPrescaler = 5;
   hfdcan1.Init.NominalSyncJumpWidth = 1;
   hfdcan1.Init.NominalTimeSeg1 = 13;
   hfdcan1.Init.NominalTimeSeg2 = 2;
@@ -397,7 +399,7 @@ static void MX_FDCAN2_Init(void)
   hfdcan2.Init.DataSyncJumpWidth = 1;
   hfdcan2.Init.DataTimeSeg1 = 1;
   hfdcan2.Init.DataTimeSeg2 = 1;
-  hfdcan2.Init.MessageRAMOffset = 304;
+  hfdcan2.Init.MessageRAMOffset = 0;
   hfdcan2.Init.StdFiltersNbr = 0;
   hfdcan2.Init.ExtFiltersNbr = 2;
   hfdcan2.Init.RxFifo0ElmtsNbr = 0;

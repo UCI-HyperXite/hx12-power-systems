@@ -1,3 +1,6 @@
-../Core/Src/throttleDriver.c:4:6:throttleTest	16	static
-../Core/Src/throttleDriver.c:30:6:accelerate	24	static
-../Core/Src/throttleDriver.c:39:6:killThrottle	8	static
+../Core/Src/throttleDriver.c:13:6:HAL_I2C_MasterTxCpltCallback	16	static
+../Core/Src/throttleDriver.c:18:6:HAL_I2C_MasterRxCpltCallback	16	static
+../Core/Src/throttleDriver.c:21:6:DAC_SetValue	16	static
+../Core/Src/throttleDriver.c:35:6:throttleTest	16	static
+../Core/Src/throttleDriver.c:63:6:accelerate	24	static
+../Core/Src/throttleDriver.c:72:6:killThrottle	8	static
