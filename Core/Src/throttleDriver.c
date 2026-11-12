@@ -33,33 +33,41 @@ void DAC_SetValue(uint16_t val) {
 
 void throttleTest() {
 	//start throttle at 0V, jump in increments of 1.22mV to 5V.
-	for (int dac_value = 0; dac_value <= DAC_MAX_VALUE; dac_value++) { //for loop gets overwritten
-		DAC_SetValue(dac_value);
-		HAL_Delay(5); // changed delay from 2 to 5 milliseconds. 
-	}
+	accelerate(DAC_MAX_VALUE); 
 
 	//decrement test
-	for (int dac_value = DAC_MAX_VALUE; dac_value >= 0; dac_value--) {
+	decelerate(DAC_MAX_VALUE); 
+}
+
+void accelerate(int targetVal) {
+	if (targetVal > DAC_MAX_VALUE) {
+		targetVal = DAC_MAX_VALUE; 
+	}
+
+	if (targetVal < 0) {
+		targetVal = 0; 
+	}
+
+	for (int dac_value = 0; dac_value <= targetVal; dac_value++) { // for loop gets overwritten
 		DAC_SetValue(dac_value);
-		HAL_Delay(5); // changed delay from 2 to 5 milliseconds. 
+		HAL_Delay(STEP_DELAY_MS); 	// changed delay from 1 to 5 milliseconds 
+									// change if its too fast (the LIM blows up)
 	}
 }
 
-void accelerate(int input) {
-	if (input > DAC_MAX_VALUE) {
-		input = DAC_MAX_VALUE; 
+void decelerate(int targetVal) {
+		if (targetVal > DAC_MAX_VALUE) {
+		targetVal = DAC_MAX_VALUE; 
 	}
 
-	if (input < 0) {
-		input = 0; 
+	if (targetVal < 0) {
+		targetVal = 0; 
 	}
 
-	for (int dac_value = 0; dac_value <= input; dac_value++) {
-		//sets DAC_CHANNEL_2 to voltage at dac_value (built-in DAC converts
-		//channel_2 outputting on PA5
+	for (int dac_value = targetVal; dac_value >= 0; dac_value--) {
 		DAC_SetValue(dac_value);
-		HAL_Delay(5); 	// changed delay from 1 to 5 milliseconds 
-						//change if its too fast (the LIM blows up)
+		HAL_Delay(STEP_DELAY_MS); 	// changed delay from 1 to 5 milliseconds 
+						// change if its too fast (the LIM blows up)
 	}
 }
 
