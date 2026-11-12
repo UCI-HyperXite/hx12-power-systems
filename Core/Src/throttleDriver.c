@@ -17,7 +17,8 @@ void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
 }
 
 void DAC_SetValue(uint16_t val) {
-	//add some sort of RTOS check so buffer isn't overwritten by another call?
+	// add some sort of RTOS check so buffer isn't overwritten by another call?
+	// halts execution until I2C line is clear/ready. 
 	while (HAL_I2C_GetState(&hi2c1) != HAL_I2C_STATE_READY) {}
 	// Clamp to 12-bit max
 	if (val > DAC_MAX_VALUE) {
